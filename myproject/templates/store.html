@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+		<div class="col-lg-3 mx-auto">
+			<div class="list-group">
+
+				<a href="{% url 'store' %}" class="list-group-item list-group-item-action">All Products</a>
+
+				{% for category in category %}
+				<a href="?category={{category.id}}"
+					class="list-group-item list-group-item-action">{{category.name}}</a>
+				{% endfor %}
+			</div>
+		</div>
+		<div id='products' class="col-lg-9 mx-auto">
+			<div class="row mx-auto">
+		{% for product in products %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				<h4 style="display: inline-block; float: right"><strong>₹{{product.price}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock content %}

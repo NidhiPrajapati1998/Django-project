@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+     <div class="row">
+		<div class="col-lg-12">
+			<div class="box-element" id="form-wrapper">
+				<form method="post" >
+					<div id="shipping-info">
+						<div class="form-field">
+							{% csrf_token %}
+							{{ form.as_p }}
+						</div>
+					</div>
+					<hr>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="reserve-book-btn ">
+                             <button class="btn btn-success " type="submit" value="submit">submit </button>
+                        </div>
+					</div>
+				</form>
+
+			</div>
+			<br>
+			<div class="box-element">
+				<hr>
+				<h3>Other Feedbacks</h3>
+				<hr>
+				<div class="cart-row">
+					<div style="flex:2"><strong>Feedback Details</strong></div>
+					<div style="flex:2"><strong>Customer Name</strong></div>
+					<div style="flex:2"><strong>Date-time</strong></div>
+
+				</div>
+				{% for data in data %}
+				<div class="cart-row">
+					<div style="flex:2"><p>{{data.message}}</p></div>
+					<div style="flex:2"><p>{{data.full_name}}</p></div>
+					<div style="flex:2"><p>{{data.date_joined}}</p></div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+
+{% endblock content %}
+
+
+ 

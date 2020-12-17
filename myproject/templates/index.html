@@ -1,0 +1,709 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+
+    <!-- Site Metas -->
+    <title>Food Funday Restaurant</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png'%}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css'%}">
+    <!-- color -->
+    <link id="changeable-colors" rel="stylesheet" href="{% static 'css/colors/orange.css'%}" />
+
+    <!-- Modernizer -->
+    <script src="{% static 'js/modernizer.js'%}"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="loader">
+        <div id="status"></div>
+    </div>
+    <div id="site-header">
+        <header id="header" class="header-block-top">
+            <div class="container">
+                <div class="row">
+                    <div class="main-menu">
+                        <!-- navbar -->
+                        <nav class="navbar navbar-default" id="mainNav">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <div class="logo">
+                                    <a class="navbar-brand js-scroll-trigger logo-header" href="#">
+                                        <img src="{% static 'images/logo.png'%}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a href="#banner">Home</a></li>
+                                    <li><a href="#about">About us</a></li>
+                                    <li><a href="{% url 'store' %}">Menu</a></li>
+                                    <li><a href="#gallery">Gallery</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact us</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a href="{% url 'feedback' %}">Feedback</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <!-- end nav-collapse -->
+                        </nav>
+                        <!-- end navbar -->
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container-fluid -->
+        </header>
+        <!-- end header -->
+    </div>
+	<!-- end site-header -->
+
+    <div id="banner" class="banner full-screen-mode parallax">
+        <div class="container pr">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="banner-static">
+                    <div class="banner-text">
+                        <div class="banner-cell">
+                            <h1>Dinner with us  <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="Friends:Family:Officemates" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
+                        </br></br><h2>We Create Sweet Memories</h2>
+                             <br>Ahmedabad is a heaven for foodies.</br>
+                             Enjoy the various Gujarati thalis, Rajasthani, Kathiawadi, South Indian, Punjabi,</br> Chinese, Thai and Mexican dishes options at hear.</p>
+
+                             {% if user.is_authenticated %}
+                            <div class="form-inline my-2 my-lg-0">
+                                <div class="bg-dark-gray text-white mr-2"> <h2> Logged in as {{ user.first_name }} {{ user.last_name }}</h2></div></br>
+                                <div class="book-btn">
+                                <a href="{% url 'logout' %}" class="table-btn hvr-underline-from-center">LOGOUT</a>
+                            </div>
+                             </div>
+                                 {% else %}
+                               <div class="book-btn">
+                                <a href="{% url 'login' %}" class="table-btn hvr-underline-from-center">LOGIN</a>
+<!--                                   <a href="{% url 'register' %}" class="table-btn hvr-underline-from-center">REGISTER</a>-->
+                            </div>
+                                  {% endif %}
+                            <a href="#about">
+                                <div class="mouse"></div>
+                            </a>
+                        </div>
+                        <!-- end banner-cell -->
+                    </div>
+                    <!-- end banner-text -->
+                </div>
+                <!-- end banner-static -->
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end banner -->
+
+    <div id="about" class="about-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h2 class="block-title"> About Us </h2>
+                        <h3>IT STARTED, QUITE SIMPLY, LIKE THIS...</h3>
+                        <p> Food Funday is a team work of Food Funday Restaurant Cafe, we aim at promoting the foodstuff industry through the branches , we establish and through the new dishes. and integrate between different cultures.</p>
+                        <p> We aim to home-produce as much as possiblefor the best quality, and to reduce food miles. Our delicious cakes, traditional Gujarati Dishes, breads, soups, sauces and accompaniments are produced in our own kitchens – and we use herbs from our gardens when in season. Even our bottled water is produced in-house, using a sophisticated seven-stage filtration. </p>
+
+                    </div>
+                </div>
+                <!-- end col -->
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <div class="about-images">
+                            <img class="about-main" src="{% static 'images/about-main.jpg'%}" alt="About Main Image">
+                            <img class="about-inset" src="{% static 'images/about-inset.jpg'%}" alt="About Inset Image">
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+
+
+
+
+    <div id="menu" class="menu-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h2 class="block-title text-center">
+						Our Menu
+					</h2>
+                        <p class="title-caption text-center">We can make a commitment to promote vegetables and fruits and whole grains on every part of every menu. We can make portion sizes smaller and emphasize quality over quantity. And we can help create a culture - imagine this - where our kids ask for healthy options instead of resisting them.
+
+ </p>
+                    </div>
+                    <div class="tab-menu">
+                        <div class="slider slider-nav" style="height: 150px">
+                            <div class="tab-title-menu">
+                                <h2>STARTERS</h2>
+
+                                <p> <i class="flaticon-canape"></i> </p>
+                            </div>
+                            <div class="tab-title-menu">
+                                <h2>MAIN DISHES</h2>
+                                <p> <i class="flaticon-dinner"></i> </p>
+                            </div>
+                            <div class="tab-title-menu">
+                                <h2>DESERTS</h2>
+                                <p> <i class="flaticon-desert"></i> </p>
+                            </div>
+                            <div class="tab-title-menu">
+                                <h2>DRINKS</h2>
+                                <p> <i class="flaticon-coffee"></i> </p>
+                            </div>
+                        </div>
+                        <div class="slider slider-single" style="height: 300px">
+                            <div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/starter/garlic-bread.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>GARLIC BREAD</h3>
+                                        </div>
+                                        <span class="offer-price">₹130</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/starter/tomato_soup.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>TOMATO SOUP</h3>
+                                        </div>
+                                        <span class="offer-price">₹150</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/starter/spring_roll.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>SPRING ROLL</h3>
+                                        </div>
+                                        <span class="offer-price">₹200</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/starter/Vegetable_Manchow_Soup.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>VEGETABLE MANCHOW SOUP</h3>
+                                        </div>
+                                        <span class="offer-price">₹200</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+
+
+                            </div>
+                            <div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store'  %}"><img src="{% static 'images/main-dish/gujarati_thali.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>GUJARATI THALI</h3>
+                                        </div>
+                                        <span class="offer-price">₹180</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/main-dish/punjabi_thali.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>PUNJABI THALI</h3>
+                                        </div>
+                                        <span class="offer-price">₹200</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/main-dish/rajashathani-thali.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>RAJASHATHANI THALI</h3>
+                                        </div>
+                                        <span class="offer-price">₹350</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/main-dish/chinese-thali.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>CHINESS THALI</h3>
+                                        </div>
+                                        <span class="offer-price">₹300</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+
+                            </div>
+                            <div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/DESERT/chocolate_donut.jpg'%}" alt="" style="width: 17%; height:35%" class="img-responsive">
+                                        <div>
+                                            <h3>CHOCOLATE DONUT</h3>
+                                        </div>
+                                        <span class="offer-price">₹100</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/desert/chocolate_pastry.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>CHOCOLATE PASTRY</h3>
+                                        </div>
+                                        <span class="offer-price">₹180</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/desert/strawberry_cupcack.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>STRAWBERRY CUPCAKE</h3>
+                                        </div>
+                                        <span class="offer-price">₹150</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/desert/black_forest_pastry.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>BLACK FOREST PASTRY</h3>
+                                        </div>
+                                        <span class="offer-price">₹200</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                            </div>
+                            <div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                       <a href="{% url 'store' %}"><img src="{% static 'images/drink/dalgona_coffee.jpg'%}" alt="" style="width: 17%; height:35%" class="img-responsive">
+                                        <div>
+                                            <h3>DALGONA COFFEE</h3>
+<!--                                            <p>-->
+<!--                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis eleifend dapibus.-->
+<!--                                            </p>-->
+                                        </div>
+                                        <span class="offer-price">₹250</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/drink/orange.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>ORANGE JUICE</h3>
+<!--                                            <p>-->
+<!--                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis eleifend dapibus.-->
+<!--                                            </p>-->
+                                        </div>
+                                        <span class="offer-price">₹80</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/drink/cold_coffee.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>COLD COFFEE</h3>
+<!--                                            <p>-->
+<!--                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis eleifend dapibus.-->
+<!--                                            </p>-->
+                                        </div>
+                                        <span class="offer-price">₹180</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="offer-item">
+                                        <a href="{% url 'store' %}"><img src="{% static 'images/drink/strawberry.jpg'%}" style="width: 17%; height:35%" alt="" class="img-responsive">
+                                        <div>
+                                            <h3>STRAWBERRY JUICE</h3>
+<!--                                            <p>-->
+<!--                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis eleifend dapibus.-->
+<!--                                            </p>-->
+                                        </div>
+                                        <span class="offer-price">₹160</span></a>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end tab-menu -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end menu -->
+
+    <div id="gallery" class="gallery-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h2 class="block-title text-center">
+						Our Gallery
+					</h2>
+                    </div>
+                    <div class="gal-container clearfix">
+                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#1">
+                                    <img src="{% static 'images/gallery_01.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="1" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_01.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 1 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#2">
+                                    <img src="{% static 'images/gallery_02.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="2" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_02.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 2 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#3">
+                                    <img src="{% static 'images/gallery_03.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="3" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_03.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 3 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#4">
+                                    <img src="{% static 'images/gallery_04.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="4" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_04.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 4 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#5">
+                                    <img src="{% static 'images/gallery_05.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="5" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_05.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 5 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#9">
+                                    <img src="{% static 'images/gallery_06.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="9" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_06.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 6 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#10">
+                                    <img src="{% static 'images/gallery_07.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="10" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_07.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 7 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#11">
+                                    <img src="{% static 'images/gallery_08.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="11" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_08.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 8 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#12">
+                                    <img src="{% static 'images/gallery_09.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="12" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_09.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 9 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#13">
+                                    <img src="{% static 'images/gallery_10.jpg'%}" alt="" />
+                                </a>
+                                <div class="modal fade" id="13" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/gallery_10.jpg'%}" alt="" />
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>This is the 10 one on my Gallery</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end gal-container -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end gallery-main -->
+
+
+
+
+
+    <div id="footer" class="footer-main">
+        <!-- end footer-news -->
+        <div class="footer-box pad-top-70">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-in-main">
+                        <div class="footer-logo">
+                            <div class="text-center">
+                                <img src="{% static 'images/logo.png'%}" alt="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-a">
+                                <h3>About Us</h3>
+                                <p>Food Funday is a team work of Food Funday Restaurant Cafe, we aim at promoting the foodstuff industry through the branches , we establish and through the new dishes. and integrate between different cultures.</p>
+                            </div>
+                            <!-- end footer-box-a -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-b">
+                                <h3>Menu</h3>
+                                <ul>
+                                    <li><a href="{% url 'store' %}">STARTERS</a></li>
+                                    <li><a href="{% url 'store' %}">MAIN DISHES</a></li>
+                                    <li><a href="{% url 'store' %}">DESERTS</a></li>
+                                    <li><a href="{% url 'store' %}">DRINKS</a></li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-b -->
+                        </div>
+
+
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-c">
+                                <h3>Contact Us</h3>
+                                <p>
+                                    <i class="fa fa-map-signs" aria-hidden="true"></i>
+                                    <a><span>Food  Funday  Restaurant ,   D-8 Akshardham Complex, 1st Flor, Ahmedabad</span></a>
+                                </p>
+                                <p>
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    <span><a>+91 9426657020</a></span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span><a>foodfunday1020@gmail.com</a></span>
+                                </p>
+                            </div>
+                            <!-- end footer-box-c -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-d">
+                                <h3>Opening Hours</h3>
+
+                                <ul>
+                                    <li>
+                                        <a><p>Monday - Sunday </p>
+                                            <br><p> 10:00 AM - 11:00 PM</p></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-d -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end footer-in-main -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+            <div id="copyright" class="copyright-main">
+                <img src="{% static 'images/logo.png'%}" alt=""/>
+            </div>
+            <!-- end copyright-main -->
+        </div>
+        <!-- end footer-box -->
+    </div>
+    <!-- end footer-main -->
+
+    <a href="#" class="scrollup" style="display: none;">Scroll</a>
+
+    <!-- ALL JS FILES -->
+    <script src="{% static 'js/all.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'js/custom.js'%}"></script>
+</body>
+
+</html>
